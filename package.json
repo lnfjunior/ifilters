@@ -1,0 +1,35 @@
+{
+  "name": "ifilters",
+  "version": "1.0.0",
+  "description": "Filtros",
+  "main": "dist/ifilters.js",
+  "scripts": {
+    "build": "node_modules/.bin/webpack src/index.js dist/ifilters.js --output-library-target umd && node_modules/.bin/uglifyjs dist/ifilters.js -o dist/ifilters.min.js",
+    "dev": "node_modules/.bin/webpack src/index.js dist/ifilters.js --output-library-target umd --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lnfjunior/ifilters.git"
+  },
+  "keywords": [
+    "vuejs",
+    "vue",
+    "filters",
+    "ifilters"
+  ],
+  "author": "Luiz Nogueira",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "1.6.0",
+    "jasmine": "2.8.0",
+    "karma": "1.7.1",
+    "karma-jasmine": "1.1.0",
+    "karma-phantomjs-launcher": "1.0.4",
+    "karma-webpack": "^2.0.9",
+    "uglify-es": "3.0.28",
+    "webpack": "3.5.5"
+  },
+  "dependencies": {}
+}
