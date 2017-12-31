@@ -1,15 +1,15 @@
 {
   "name": "ifilters",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Filtros",
   "main": "dist/ifilters.js",
   "scripts": {
-    "build": "node_modules/.bin/webpack src/index.js dist/ifilters.js --output-library-target umd && node_modules/.bin/uglifyjs dist/ifilters.js -o dist/ifilters.min.js",
-    "dev": "node_modules/.bin/webpack src/index.js dist/ifilters.js --output-library-target umd --watch"
+    "build": "webpack src/index.js dist/ifilters.js --output-library-target umd && node_modules/.bin/uglifyjs dist/ifilters.js -o dist/ifilters.min.js",
+    "dev": "webpack src/index.js dist/ifilters.js --output-library-target umd --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/lnfjunior/ifilters.git"
+    "url": "git+https://github.com/lnfjunior/ifilters.git"
   },
   "keywords": [
     "vuejs",
@@ -17,7 +17,11 @@
     "filters",
     "ifilters"
   ],
-  "author": "Luiz Nogueira",
+  "author": "lnfjunior <lnfjunior@gmail.com>",
+  "maintainers": {
+    "name": "lnfjunior",
+    "email": "lnfjunior@gmail.com"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "6.26.0",
@@ -31,5 +35,9 @@
     "uglify-es": "3.0.28",
     "webpack": "3.5.5"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/lnfjunior/ifilters/issues"
+  },
+  "homepage": "https://github.com/lnfjunior/ifilters#readme"
 }

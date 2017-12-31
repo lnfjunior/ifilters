@@ -80,14 +80,13 @@ return /******/ (function(modules) { // webpackBootstrap
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array_index__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array_index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__array_index__);
 
 
 var iFilters = {
   install: function(Vue) {
     Vue.mixin({
       methods: {
-        concat: __WEBPACK_IMPORTED_MODULE_0__array_index__["concat"]
+        concat: __WEBPACK_IMPORTED_MODULE_0__array_index__["a" /* concat */]
       }
     })
   }
@@ -102,9 +101,173 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Projetos/INA/ifilters/src/array/index.js'");
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__concat__ = __webpack_require__(2);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__concat__["default"]; });
+
+
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_index__ = __webpack_require__(3);
+
+/**
+ * Filter filter for arrays
+ *
+ * @param {Array|Object} arr
+ * @param {Object|Array} joined
+ * @return {Array}
+ */
+function concat(arr, joined) {
+    if (isUndefined(joined)) return arr;
+
+    if (__WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].isArray(arr)) {
+        return __WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].isObject(joined)
+            ? arr.concat(__WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].toArray(joined))
+            : arr.concat(joined);
+    }
+
+    if (__WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].isObject(arr)) {
+        let array = __WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].toArray(arr);
+        return (__WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].isObject(joined))
+            ? array.concat(__WEBPACK_IMPORTED_MODULE_0__util_index__["a" /* default */].toArray(joined))
+            : array.concat(joined);
+    }
+    return arr;
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var
+    ArrayProto = Array.prototype,
+    ObjProto = Object.prototype;
+
+var
+    slice = ArrayProto.slice,
+    toString = ObjProto.toString;
+
+var util = {};
+
+util.isArray = function(obj) {
+    return Array.isArray(obj);
+};
+
+var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+util.isArrayLike = function(obj) {
+    if(typeof obj !== 'object' || !obj){
+        return false;
+    }
+    var length = obj.length;
+    return typeof length === 'number'
+        && length % 1 === 0 && length >= 0 && length <= MAX_ARRAY_INDEX;
+};
+
+util.isObject = function(obj) {
+    var type = typeof obj;
+    return type === 'function' || type === 'object' && !!obj;
+};
+
+
+util.each = function(obj, callback) {
+    var i,
+        len;
+    if (util.isArray(obj)) {
+        for (i = 0, len = obj.length; i < len; i++) {
+            if (callback(obj[i], i, obj) === false) {
+                break;
+            }
+        }
+    } else {
+        for (i in obj) {
+            if (callback(obj[i], i, obj) === false) {
+                break;
+            }
+        }
+    }
+    return obj;
+};
+
+util.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error'], function(name) {
+    util['is' + name] = function(obj) {
+        return toString.call(obj) === '[object ' + name + ']';
+    };
+});
+
+util.toArray = function(list, start) {
+  start = start || 0
+  var i = list.length - start
+  var ret = new Array(i)
+  while (i--) {
+    ret[i] = list[i + start]
+  }
+  return ret
+}
+
+util.toNumber = function(value) {
+  if (typeof value !== 'string') {
+    return value
+  } else {
+    var parsed = Number(value)
+    return isNaN(parsed)
+      ? value
+      : parsed
+  }
+};
+
+util.convertArray = function (value) {
+    if (util.isArray(value)) {
+      return value
+    } else if (util.isPlainObject(value)) {
+      // convert plain object to array.
+      var keys = Object.keys(value)
+      var i = keys.length
+      var res = new Array(i)
+      var key
+      while (i--) {
+        key = keys[i]
+        res[i] = {
+          $key: key,
+          $value: value[key]
+        }
+      }
+      return res
+    } else {
+      return value || []
+    }
+}
+
+function multiIndex(obj,is) {  // obj,['1','2','3'] -> ((obj['1'])['2'])['3']
+    return is.length ? multiIndex(obj[is[0]],is.slice(1)) : obj
+}
+
+util.getPath = function(obj,is) {   // obj,'1.2.3' -> multiIndex(obj,['1','2','3'])
+    return multiIndex(obj,is.split('.'))
+}
+
+/**
+ * Strict object type check. Only returns true
+ * for plain JavaScript objects.
+ *
+ * @param {*} obj
+ * @return {Boolean}
+ */
+
+var toString = Object.prototype.toString
+var OBJECT_STRING = '[object Object]'
+util.isPlainObject = function (obj) {
+  return toString.call(obj) === OBJECT_STRING
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (util);
 
 /***/ })
 /******/ ]);
