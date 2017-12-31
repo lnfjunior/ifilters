@@ -1,15 +1,16 @@
 {
   "name": "ifilters",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Filtros",
   "main": "dist/ifilters.js",
+  "private": false,
   "scripts": {
     "build": "webpack src/index.js dist/ifilters.js --output-library-target umd && node_modules/.bin/uglifyjs dist/ifilters.js -o dist/ifilters.min.js",
     "dev": "webpack src/index.js dist/ifilters.js --output-library-target umd --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lnfjunior/ifilters.git"
+    "url": "git//github.com/lnfjunior/ifilters.git"
   },
   "keywords": [
     "vuejs",
@@ -24,20 +25,15 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "^7.1.1",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
     "babel-preset-env": "1.6.0",
     "jasmine": "2.8.0",
-    "karma": "1.7.1",
-    "karma-jasmine": "1.1.0",
-    "karma-phantomjs-launcher": "1.0.4",
-    "karma-webpack": "^2.0.9",
+    "karma": "^1.4.1",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-webpack": "^2.0.2",
     "uglify-es": "3.0.28",
-    "webpack": "3.5.5"
+    "webpack": "^2.2.0"
   },
-  "dependencies": {},
-  "bugs": {
-    "url": "https://github.com/lnfjunior/ifilters/issues"
-  },
-  "homepage": "https://github.com/lnfjunior/ifilters#readme"
+  "dependencies": {}
 }

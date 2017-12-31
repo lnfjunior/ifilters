@@ -1,6 +1,6 @@
 import * as arrayFilters from './array/index'
 
-var iFilters = {
+let iFilters = {
   install: function(Vue) {
     Vue.mixin({
       methods: {
