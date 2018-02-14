@@ -7,7 +7,7 @@ import util from '../util/index'
  * @return {Array}
  */
 function concat(arr, joined) {
-    if (isUndefined(joined)) return arr;
+    if (util.isUndefined(joined)) return arr;
 
     if (util.isArray(arr)) {
         return util.isObject(joined)
@@ -23,3 +23,5 @@ function concat(arr, joined) {
     }
     return arr;
 }
+
+export default concat;

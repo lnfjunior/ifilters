@@ -1,35 +1,38 @@
-let
+var
     ArrayProto = Array.prototype,
     ObjProto = Object.prototype;
 
-let
+var
     slice = ArrayProto.slice,
     toString = ObjProto.toString;
 
-let util = {};
+var util = {};
 
 util.isArray = function(obj) {
     return Array.isArray(obj);
 };
 
-let MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
 util.isArrayLike = function(obj) {
     if(typeof obj !== 'object' || !obj){
         return false;
     }
-    let length = obj.length;
+    var length = obj.length;
     return typeof length === 'number'
         && length % 1 === 0 && length >= 0 && length <= MAX_ARRAY_INDEX;
 };
 
 util.isObject = function(obj) {
-    let type = typeof obj;
+    var type = typeof obj;
     return type === 'function' || type === 'object' && !!obj;
 };
 
+util.isUndefined = function (value) {
+    return typeof value === 'undefined'
+};
 
 util.each = function(obj, callback) {
-    let i,
+    var i,
         len;
     if (util.isArray(obj)) {
         for (i = 0, len = obj.length; i < len; i++) {
@@ -55,8 +58,8 @@ util.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp', 'Error
 
 util.toArray = function(list, start) {
   start = start || 0
-  let i = list.length - start
-  let ret = new Array(i)
+  var i = list.length - start
+  var ret = new Array(i)
   while (i--) {
     ret[i] = list[i + start]
   }
@@ -67,7 +70,7 @@ util.toNumber = function(value) {
   if (typeof value !== 'string') {
     return value
   } else {
-    let parsed = Number(value)
+    var parsed = Number(value)
     return isNaN(parsed)
       ? value
       : parsed
@@ -79,10 +82,10 @@ util.convertArray = function (value) {
       return value
     } else if (util.isPlainObject(value)) {
       // convert plain object to array.
-      let keys = Object.keys(value)
-      let i = keys.length
-      let res = new Array(i)
-      let key
+      var keys = Object.keys(value)
+      var i = keys.length
+      var res = new Array(i)
+      var key
       while (i--) {
         key = keys[i]
         res[i] = {
@@ -112,8 +115,8 @@ util.getPath = function(obj,is) {   // obj,'1.2.3' -> multiIndex(obj,['1','2','3
  * @return {Boolean}
  */
 
-let toString = Object.prototype.toString
-let OBJECT_STRING = '[object Object]'
+var toString = Object.prototype.toString
+var OBJECT_STRING = '[object Object]'
 util.isPlainObject = function (obj) {
   return toString.call(obj) === OBJECT_STRING
 }
